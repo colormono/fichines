@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'ArcadeClassic';
+  src: url('../assets/fonts/ARCADECLASSIC.woff2') format('woff2'),
+    url('../assets/fonts/ARCADECLASSIC.woff') format('woff'),
+    url('../assets/fonts/ARCADECLASSIC.ttf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+body {
+  font-family: 'ArcadeClassic';
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}

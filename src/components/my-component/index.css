@@ -1,0 +1,8 @@
+.my-component {
+  background: black;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  color: white;
+  padding: 12px;
+}
