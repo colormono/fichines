@@ -10,30 +10,35 @@
  */
 import { filters as baseFilters } from 'pixi.js';
 import * as filters from 'pixi-filters';
-import { Controls, toggleFullScreen } from '../utils';
 import Stats from '../utils/stats';
 
-import Title from './prefabs/title/title';
+import { ScenesManager } from '../engine';
 import SceneWalker from './scenes/walker/walker';
 import SceneExample from './scenes/example/example';
+
+import Title from './prefabs/title/title';
 import './game.css';
 
+/**
+ * Game
+ *
+ * @param {Object} config Renderer configuration
+ * @extends PIXI.Application
+ * @returns {Game}
+ */
 export default class Game extends PIXI.Application {
   constructor(config) {
-    // Create and insert app into the DOM
+    // append renderer to DOM
     super(config);
+    this.stage.interactive = true;
     document.body.appendChild(this.view);
 
-    // Add Stats
+    // add Stats
     this.stats = new Stats();
     this.stats.showPanel(0);
     document.body.appendChild(this.stats.dom);
 
-    // Add Keyboard input
-    this.controls = new Controls();
-    this.stage.interactive = true;
-
-    // Preload assets
+    // preload assets
     this.preload();
   }
 
@@ -63,17 +68,26 @@ export default class Game extends PIXI.Application {
     background.endFill();
     this.gameContainer.addChild(background);
 
-    // Create the scenes
-    this.sceneWalker = new SceneWalker(this);
-    this.gameContainer.addChild(this.sceneWalker);
+    // Create a scene container
+    this.sceneContainer = new PIXI.Container();
+    this.gameContainer.addChild(this.sceneContainer);
 
-    // Current scene
-    this.state = this.sceneWalker;
+    // Create an overlay container
+    this.overlayContainer = new PIXI.Container();
+    this.gameContainer.addChild(this.overlayContainer);
+
+    // Scene manager
+    this.scenesManager = new ScenesManager(this);
+    this.scenesManager.addScene('walker', SceneWalker);
+    this.scenesManager.addScene('example', SceneExample);
+    //this.scenesManager.showNextScene();
+    //this.scenesManager.showNextScene();
+    this.scenesManager.goTo('walker');
 
     // Game title
     this.message = new Title('Fichines');
     this.message.position.set(30, 90);
-    this.gameContainer.addChild(this.message);
+    this.overlayContainer.addChild(this.message);
 
     // Filters (A.K.A. Shaders)
     this.filterNoise = new baseFilters.NoiseFilter();
@@ -92,21 +106,24 @@ export default class Game extends PIXI.Application {
       this.filterNoise
     ];
 
-    // Animate
-    this.ticker.add(delta => {
-      this.gameLoop(delta);
-
-      // Filters (update shader uniforms)
-      //filter.uniforms.time.value += 1;
-      //this.filterGlitch.slices = parseInt(Math.random() * 100);
-      this.filterNoise.seed = Math.random();
-      this.filterCRT.seed = Math.random();
-    });
+    // Game loop
+    this.ticker.add(delta => this.gameLoop(delta));
   }
 
   gameLoop(delta) {
+    // open stats
     this.stats.begin();
+
+    // animate filters
+    //this.filter.uniforms.time.value += 1;
+    //this.filterGlitch.slices = parseInt(Math.random() * 3);
+    this.filterNoise.seed = Math.random();
+    this.filterCRT.seed = Math.random();
+
+    // Current scene
     this.state.update(delta);
+
+    // close start
     this.stats.end();
   }
 }

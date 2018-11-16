@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import particleTexture from '../../../assets/images/coin1.png';
+import particleTexture from '../../../assets/images/coin2.png';
 
 const MyParticles = () => {
   const superFastSprites = new PIXI.particles.ParticleContainer(1000, {
@@ -9,7 +9,7 @@ const MyParticles = () => {
     uvs: true
   });
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 100; i++) {
     let monedita = new PIXI.Sprite(PIXI.Texture.fromImage(particleTexture));
     const w = Math.random() * 800;
     const h = Math.random() * 600;

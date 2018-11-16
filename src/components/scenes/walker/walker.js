@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import * as filters from 'pixi-filters';
-import { Bump, Controls, inViewport } from '../../../utils';
+import { Controls, Scene } from '../../../engine';
+import { Bump, inViewport } from '../../../utils';
 import Player from '../../prefabs/player/player';
 import Coin from '../../prefabs/coin/coin';
 
@@ -16,20 +17,37 @@ const controls = new Controls();
  * Top down view arcade
  *
  * @param {Object} app App reference
- * @extends PIXI.Container
+ * @extends Scene
  * @exports Walker
  */
-export default class Walker extends PIXI.Container {
+export default class Walker extends Scene {
   constructor(app) {
     super();
     this.app = app;
+    this.create();
+  }
 
+  create() {
     // Fill the background
     let background = new PIXI.Graphics();
     background.beginFill(0x00ccff);
     background.drawRect(0, 0, this.app.screen.width, this.app.screen.height);
     background.endFill();
     this.addChild(background);
+
+    // Populate with coins
+    this.coins = new PIXI.Container();
+    this.coins.position.set(100, 100);
+    this.addChild(this.coins);
+    //this.coins.removeChild(coin3);
+    for (let i = 0; i < 100; i++) {
+      let monedita = new Coin();
+      const w = Math.random() * screen.width;
+      const h = Math.random() * screen.height;
+      monedita.position.set(w, h);
+      monedita.rotation = w;
+      this.coins.addChild(monedita);
+    }
 
     // Create the player
     this.player = new Player(PIXI.loader.resources.coin2.texture);
@@ -59,20 +77,6 @@ export default class Walker extends PIXI.Container {
     this.enemy.anchor.set(0.5, 0.5);
     this.enemy.position.set(500, 500);
     this.addChild(this.enemy);
-
-    // Create coins
-    this.coins = new PIXI.Container();
-    this.coins.position.set(100, 100);
-    this.addChild(this.coins);
-    //this.coins.removeChild(coin3);
-    for (let i = 0; i < 100; i++) {
-      let monedita = new Coin();
-      const w = Math.random() * screen.width;
-      const h = Math.random() * screen.height;
-      monedita.position.set(w, h);
-      monedita.rotation = w;
-      this.coins.addChild(monedita);
-    }
   }
 
   /**
@@ -104,8 +108,8 @@ export default class Walker extends PIXI.Container {
 
     // Collisions
     if (bump.hit(this.player, this.enemy)) {
-      this.app.message.text = 'Collission!';
-      this.app.state = this.app.sceneExample;
+      this.app.message.text = 'Game over!';
+      this.app.scenesManager.goTo('example');
     } else {
       this.app.message.text = 'Keep walking...';
     }

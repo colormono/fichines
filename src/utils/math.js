@@ -1,10 +1,3 @@
-export function inViewport(x, y, w, h) {
-  if (x > w || x < 0 || y > h || y < 0) {
-    return false;
-  }
-  return true;
-}
-
 export function rotateToPoint(mx, my, px, py) {
   var dist_Y = my - py;
   var dist_X = mx - px;

@@ -62,14 +62,16 @@
 
 - https://github.com/willianjusten/awesome-audio-visualization
 
-### Code Sources
+### Other Code Sources (Thanks!)
 
 - https://github.com/deepstreamIO/ds-demo-spaceshooter
+- https://github.com/idzhurov/pixijs-game-boilerplate
+- https://github.com/gamestdio/pixi-engine
 - http://proclive.io/shooting-tutorial/
 
-### GLSL
+### GLSL Example
 
-```
+```js
 import { Filter, filters as baseFilters } from 'pixi.js';
 import \* as filters from 'pixi-filters';
 

@@ -1,10 +1,10 @@
 import './index.css';
 
-const myComponent = () => {
+const Footer = () => {
   let element = document.createElement('div');
-  element.className = 'my-component';
+  element.className = 'footer';
   element.innerHTML = 'FICHINES';
   return element;
 };
 
-export default myComponent;
+export default Footer;

@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import { Scene } from '../../../engine';
 import MyCanvas from '../../prefabs/my-canvas/my-canvas';
 import MyParticles from '../../prefabs/my-particles/my-particles';
 
@@ -9,10 +10,10 @@ import MyParticles from '../../prefabs/my-particles/my-particles';
  * Should try with singleton... if canvas is not created...
  *
  * @param {Object} app App reference
- * @extends PIXI.Container
+ * @extends Scene
  * @exports Example
  */
-export default class Example extends PIXI.Container {
+export default class Example extends Scene {
   constructor(app) {
     super();
     this.app = app;
@@ -25,7 +26,7 @@ export default class Example extends PIXI.Container {
 
     // Particles
     let myParticles = MyParticles();
-    this.app.stage.addChild(myParticles);
+    this.addChild(myParticles);
 
     // Graphic Primitives
     let rectangle = new PIXI.Graphics();

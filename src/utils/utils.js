@@ -1,4 +1,15 @@
-function toggleFullScreen() {
+export const checkScreen = (w, h, cw, ch) => w !== cw || h !== ch;
+
+export const randomRange = (m, x) => Math.random() * (x - m) + m;
+
+export function inViewport(x, y, w, h) {
+  if (x > w || x < 0 || y > h || y < 0) {
+    return false;
+  }
+  return true;
+}
+
+export function toggleFullScreen() {
   if (!document.mozFullScreen && !document.webkitFullScreen) {
     if (document.body.mozRequestFullScreen) {
       document.body.mozRequestFullScreen();
@@ -13,5 +24,3 @@ function toggleFullScreen() {
     }
   }
 }
-
-export { toggleFullScreen };
