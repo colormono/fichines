@@ -11,8 +11,8 @@ const MyParticles = () => {
 
   for (let i = 0; i < 100; i++) {
     let monedita = new PIXI.Sprite(PIXI.Texture.fromImage(particleTexture));
-    const w = Math.random() * 800;
-    const h = Math.random() * 600;
+    const w = Math.random() * window.innerWidth;
+    const h = Math.random() * window.innerHeight;
     monedita.position.set(w, h);
     monedita.rotation = w;
     superFastSprites.addChild(monedita);

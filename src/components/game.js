@@ -1,13 +1,3 @@
-/**
- * PIXI OOP Game
- *
- * - Create game and insert into the DOM
- * - Create a player, enemies, coins and bullets
- * - Move the player with the gamepad
- * - Add GLSL Filters
- *
- * @exports Game
- */
 import { filters as baseFilters } from 'pixi.js';
 import * as filters from 'pixi-filters';
 import Stats from '../utils/stats';
@@ -22,6 +12,11 @@ import './game.css';
 /**
  * Game
  *
+ * - Create game and insert into the DOM
+ * - Create a player, enemies, coins and bullets
+ * - Move the player with the gamepad
+ * - Add GLSL Filters
+ *
  * @param {Object} config Renderer configuration
  * @extends PIXI.Application
  * @returns {Game}
@@ -30,6 +25,7 @@ export default class Game extends PIXI.Application {
   constructor(config) {
     // append renderer to DOM
     super(config);
+    this.ratio = config.ratio;
     this.stage.interactive = true;
     document.body.appendChild(this.view);
 
@@ -40,6 +36,27 @@ export default class Game extends PIXI.Application {
 
     // preload assets
     this.preload();
+  }
+
+  // Resize function window
+  // TODO: Observer pattern
+  // All components should react to change
+  resize() {
+    this.renderer.resize(window.innerWidth, window.innerHeight);
+    /*
+    let w, h;
+    if (window.innerWidth / window.innerHeight >= this.ratio) {
+      w = window.innerHeight * this.ratio;
+      h = window.innerHeight;
+    } else {
+      w = window.innerWidth;
+      h = window.innerWidth / this.ratio;
+    }
+    this.renderer.resize(w, h);
+
+    this.background.width = w;
+    this.background.height = h;
+    */
   }
 
   preload() {
@@ -62,11 +79,11 @@ export default class Game extends PIXI.Application {
     this.stage.addChild(this.gameContainer);
 
     // Fill the background
-    let background = new PIXI.Graphics();
-    background.beginFill(0x111111);
-    background.drawRect(0, 0, this.screen.width, this.screen.height);
-    background.endFill();
-    this.gameContainer.addChild(background);
+    this.background = new PIXI.Graphics();
+    this.background.beginFill(0xccff);
+    this.background.drawRect(0, 0, window.innerWidth, window.innerHeight);
+    this.background.endFill();
+    this.gameContainer.addChild(this.background);
 
     // Create a scene container
     this.sceneContainer = new PIXI.Container();
@@ -93,6 +110,7 @@ export default class Game extends PIXI.Application {
     this.filterNoise = new baseFilters.NoiseFilter();
     this.filterCRT = new filters.CRTFilter();
     this.filterGlitch = new filters.GlitchFilter({
+      fillMode: 3,
       slices: 10,
       offset: 10,
       red: [-3, 0],
@@ -106,24 +124,34 @@ export default class Game extends PIXI.Application {
       this.filterNoise
     ];
 
+    // Listen for window resize events
+    window.addEventListener('resize', this.resize.bind(this));
+    this.resize();
+
     // Game loop
-    this.ticker.add(delta => this.gameLoop(delta));
+    this.ticker.add(dt => this.update(dt));
   }
 
-  gameLoop(delta) {
-    // open stats
+  /**
+   * Update application
+   *
+   * called each frame to update logic and rendering
+   *
+   * @param {Number} dt Delta time
+   */
+  update(dt) {
     this.stats.begin();
 
-    // animate filters
+    // update current scene
+    this.state.update(dt);
+
+    // update filters
     //this.filter.uniforms.time.value += 1;
     //this.filterGlitch.slices = parseInt(Math.random() * 3);
     this.filterNoise.seed = Math.random();
     this.filterCRT.seed = Math.random();
 
-    // Current scene
-    this.state.update(delta);
-
-    // close start
+    // Last: close the stats
     this.stats.end();
   }
 }

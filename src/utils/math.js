@@ -5,3 +5,5 @@ export function rotateToPoint(mx, my, px, py) {
   //var degrees = angle * 180/ Math.PI;
   return angle;
 }
+
+export const randomRange = (m, x) => Math.random() * (x - m) + m;

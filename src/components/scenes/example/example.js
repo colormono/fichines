@@ -30,7 +30,7 @@ export default class Example extends Scene {
 
     // Graphic Primitives
     let rectangle = new PIXI.Graphics();
-    rectangle.beginFill(0x00ccff);
+    rectangle.beginFill(0xff0000);
     rectangle.drawRect(0, 0, 100, 100);
     rectangle.endFill();
     rectangle.x = 170;

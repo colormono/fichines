@@ -24,14 +24,19 @@ export default class Walker extends Scene {
   constructor(app) {
     super();
     this.app = app;
-    this.create();
+    this.setup();
   }
 
-  create() {
+  /**
+   * Create scene
+   *
+   * called when loader has finished
+   */
+  setup() {
     // Fill the background
     let background = new PIXI.Graphics();
     background.beginFill(0x00ccff);
-    background.drawRect(0, 0, this.app.screen.width, this.app.screen.height);
+    background.drawRect(0, 0, window.innerWidth, window.innerHeight);
     background.endFill();
     this.addChild(background);
 
@@ -42,8 +47,8 @@ export default class Walker extends Scene {
     //this.coins.removeChild(coin3);
     for (let i = 0; i < 100; i++) {
       let monedita = new Coin();
-      const w = Math.random() * screen.width;
-      const h = Math.random() * screen.height;
+      const w = Math.random() * window.innerWidth;
+      const h = Math.random() * window.innerHeight;
       monedita.position.set(w, h);
       monedita.rotation = w;
       this.coins.addChild(monedita);
@@ -82,9 +87,11 @@ export default class Walker extends Scene {
   /**
    * Update scene
    *
-   * @param {Number} delta Delta time
+   * called each frame to update logic
+   *
+   * @param {Number} dt Delta time
    */
-  update(delta) {
+  update(dt) {
     // Player
     this.player.update();
     this.player.lookAt(
@@ -99,7 +106,7 @@ export default class Walker extends Scene {
     for (let b = this.bullets.length - 1; b >= 0; b--) {
       this.bullets[b].update();
       const { x, y } = this.bullets[b].position;
-      if (!inViewport(x, y, this.app.screen.width, this.app.screen.height)) {
+      if (!inViewport(x, y, window.innerWidth, window.innerHeight)) {
         this.bullets[b].destroy();
         this.bullets.splice(b, 1);
         break;

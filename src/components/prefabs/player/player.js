@@ -62,10 +62,10 @@ export default class Player extends PIXI.Sprite {
     this.position.y += this.vy;
 
     // toroide
-    if (this.position.x > screen.width) this.position.x = 0;
-    if (this.position.x < 0) this.position.x = screen.width;
-    if (this.position.y > screen.height) this.position.y = 0;
-    if (this.position.y < 0) this.position.y = screen.height;
+    if (this.position.x > window.innerWidth) this.position.x = 0;
+    if (this.position.x < 0) this.position.x = window.innerWidth;
+    if (this.position.y > window.innerHeight) this.position.y = 0;
+    if (this.position.y < 0) this.position.y = window.innerHeight;
   }
 
   // rotate to point, animate shooting
