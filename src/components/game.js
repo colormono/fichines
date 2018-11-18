@@ -4,6 +4,7 @@ import Stats from '../utils/stats';
 
 import { ScenesManager } from '../engine';
 import SceneWalker from './scenes/walker/walker';
+import SceneTetris from './scenes/tetris/tetris';
 import SceneExample from './scenes/example/example';
 
 import Title from './prefabs/title/title';
@@ -97,9 +98,9 @@ export default class Game extends PIXI.Application {
     this.scenesManager = new ScenesManager(this);
     this.scenesManager.addScene('walker', SceneWalker);
     this.scenesManager.addScene('example', SceneExample);
+    this.scenesManager.addScene('tetris', SceneTetris);
     //this.scenesManager.showNextScene();
     //this.scenesManager.showNextScene();
-    this.scenesManager.goTo('walker');
 
     // Game title
     this.message = new Title('Fichines');
@@ -108,6 +109,7 @@ export default class Game extends PIXI.Application {
 
     // Filters (A.K.A. Shaders)
     this.filterNoise = new baseFilters.NoiseFilter();
+    this.filterNoise.noise = 0.2;
     this.filterCRT = new filters.CRTFilter();
     this.filterGlitch = new filters.GlitchFilter({
       fillMode: 3,
@@ -123,6 +125,8 @@ export default class Game extends PIXI.Application {
       this.filterCRT,
       this.filterNoise
     ];
+
+    this.scenesManager.goTo('tetris');
 
     // Listen for window resize events
     window.addEventListener('resize', this.resize.bind(this));

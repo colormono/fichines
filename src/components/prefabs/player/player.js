@@ -28,29 +28,29 @@ export default class Player extends PIXI.Sprite {
     this.canShoot = true;
   }
 
-  setControls(controls) {
+  setGamepad(gamepad) {
     // Up
-    controls.up.press = () => (this.vy = -5);
-    controls.up.release = () => {
-      if (!controls.down.isDown) this.vy = 0;
+    gamepad.up.press = () => (this.vy = -5);
+    gamepad.up.release = () => {
+      if (!gamepad.down.isDown) this.vy = 0;
     };
 
     // Right
-    controls.right.press = () => (this.vx = 5);
-    controls.right.release = () => {
-      if (!controls.left.isDown) this.vx = 0;
+    gamepad.right.press = () => (this.vx = 5);
+    gamepad.right.release = () => {
+      if (!gamepad.left.isDown) this.vx = 0;
     };
 
     // Left
-    controls.left.press = () => (this.vx = -5);
-    controls.left.release = () => {
-      if (!controls.right.isDown) this.vx = 0;
+    gamepad.left.press = () => (this.vx = -5);
+    gamepad.left.release = () => {
+      if (!gamepad.right.isDown) this.vx = 0;
     };
 
     // Down
-    controls.down.press = () => (this.vy = 5);
-    controls.down.release = () => {
-      if (!controls.up.isDown) this.vy = 0;
+    gamepad.down.press = () => (this.vy = 5);
+    gamepad.down.release = () => {
+      if (!gamepad.up.isDown) this.vy = 0;
     };
   }
 

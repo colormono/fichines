@@ -1,9 +1,11 @@
 import * as PIXI from 'pixi.js';
+import { Scene } from '../../../engine';
 
-export default class Template extends PIXI.Container {
+export default class Template extends Scene {
   constructor(app) {
     super();
     this.app = app;
+    this.setup();
   }
 
   /**

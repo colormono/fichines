@@ -42,7 +42,7 @@ function keyboard(value) {
   return key;
 }
 
-function Controls() {
+function Gamepad() {
   //console.log('controles');
   return {
     left: keyboard('ArrowLeft'),
@@ -54,4 +54,4 @@ function Controls() {
   };
 }
 
-export { Controls };
+export { Gamepad };

@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import * as filters from 'pixi-filters';
-import { Controls, Scene } from '../../../engine';
+import { Gamepad, Scene } from '../../../engine';
 import { Bump, inViewport } from '../../../utils';
 import Player from '../../prefabs/player/player';
 import Coin from '../../prefabs/coin/coin';
@@ -9,7 +9,7 @@ import Coin from '../../prefabs/coin/coin';
 const bump = new Bump(PIXI);
 
 // Add Keyboard and Gamepad support
-const controls = new Controls();
+const gamepad = new Gamepad();
 
 /**
  * Scene: Walker
@@ -57,7 +57,7 @@ export default class Walker extends Scene {
     // Create the player
     this.player = new Player(PIXI.loader.resources.coin2.texture);
     this.player.position.set(500, 200);
-    this.player.setControls(controls);
+    this.player.setGamepad(gamepad);
     this.addChild(this.player);
 
     // Apply pixelated filter
@@ -74,7 +74,7 @@ export default class Walker extends Scene {
         //console.log('Balas vivas', this.bullets.length);
       }
     };
-    controls.space.press = () => this.tryShooting();
+    gamepad.space.press = () => this.tryShooting();
     this.app.stage.on('mousedown', () => this.tryShooting());
 
     // Create an enemy

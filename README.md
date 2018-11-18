@@ -46,7 +46,10 @@
 - [Pixi Camera](https://github.com/davidfig/pixi-viewport)
 - [Pixi Collision detection](https://davidfig.github.io/intersects/)
 - [Playground](http://playgroundjs.com/): Game oriented framework
-- [P2](https://github.com/schteppe/p2.js/): Physics library
+- [P2](https://github.com/schteppe/p2.js/): Physics engine
+- [Proton](http://a-jie.github.io/Proton/): Particles engine
+- [Matter JS](http://brm.io/matter-js/): Physics engine
+- [Matter JS Docs](http://brm.io/matter-js/docs/): Matter Physics engine docs
 - [Pixi Matter Example](https://codepen.io/colormono/pen/wQWjEv)
 - [Pixi Game Engine Utils](https://github.com/kittykatattack/hexi#setupfunction): Up to v3
 
@@ -57,6 +60,7 @@
 - [OpenGameArt](http://opengameart.org): Anything
 - [Kenney](https://www.kenney.nl/assets): Tilesets
 - [OrangeFreeSounds](http://www.orangefreesounds.com/): Sounds
+- [Font](https://somepx.itch.io/humble-fonts-free)
 
 ### Beyond
 
