@@ -5,6 +5,7 @@ import Stats from '../utils/stats';
 import { ScenesManager } from '../engine';
 import SceneWalker from './scenes/walker/walker';
 import SceneTetris from './scenes/tetris/tetris';
+import SceneCollisions from './scenes/collisions/collisions';
 import SceneExample from './scenes/example/example';
 
 import Title from './prefabs/title/title';
@@ -99,6 +100,7 @@ export default class Game extends PIXI.Application {
     this.scenesManager.addScene('walker', SceneWalker);
     this.scenesManager.addScene('example', SceneExample);
     this.scenesManager.addScene('tetris', SceneTetris);
+    this.scenesManager.addScene('collisions', SceneCollisions);
     //this.scenesManager.showNextScene();
     //this.scenesManager.showNextScene();
 
@@ -126,7 +128,8 @@ export default class Game extends PIXI.Application {
       this.filterNoise
     ];
 
-    this.scenesManager.goTo('tetris');
+    // Start scene
+    this.scenesManager.goTo('collisions');
 
     // Listen for window resize events
     window.addEventListener('resize', this.resize.bind(this));

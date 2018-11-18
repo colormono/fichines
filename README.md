@@ -43,14 +43,14 @@
 
 ### Game utils
 
-- [Pixi Camera](https://github.com/davidfig/pixi-viewport)
-- [Pixi Collision detection](https://davidfig.github.io/intersects/)
 - [Playground](http://playgroundjs.com/): Game oriented framework
-- [P2](https://github.com/schteppe/p2.js/): Physics engine
-- [Proton](http://a-jie.github.io/Proton/): Particles engine
+- [Pixi Collision detection](https://davidfig.github.io/intersects/): Collisions engine
 - [Matter JS](http://brm.io/matter-js/): Physics engine
 - [Matter JS Docs](http://brm.io/matter-js/docs/): Matter Physics engine docs
-- [Pixi Matter Example](https://codepen.io/colormono/pen/wQWjEv)
+- [Pixi and Matter combined](https://codepen.io/colormono/pen/wQWjEv): Example
+- [Pixi Camera](https://github.com/davidfig/pixi-viewport)
+- [P2](https://github.com/schteppe/p2.js/): Physics engine
+- [Proton](http://a-jie.github.io/Proton/): Particles engine
 - [Pixi Game Engine Utils](https://github.com/kittykatattack/hexi#setupfunction): Up to v3
 
 ### Game assets
@@ -67,12 +67,13 @@
 - https://github.com/willianjusten/awesome-audio-visualization
 - [Phaser Boilerplate](https://github.com/lean/phaser-es6-webpack): JS Game Framework
 
-### Other Code Sources (Thanks!)
+### Other Code Sources (Thanks for sharing!)
 
 - https://github.com/deepstreamIO/ds-demo-spaceshooter
 - https://github.com/idzhurov/pixijs-game-boilerplate
 - https://github.com/gamestdio/pixi-engine
 - http://proclive.io/shooting-tutorial/
+- https://github.com/joegaffey/galaxeroids
 
 ### GLSL Example
 

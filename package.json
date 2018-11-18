@@ -23,6 +23,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
+    "intersects": "^2.3.0",
     "matter-js": "^0.14.2",
     "pixi-animationloop": "^1.0.9",
     "pixi-filters": "^2.6.1",
