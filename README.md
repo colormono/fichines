@@ -74,6 +74,9 @@
 - https://github.com/gamestdio/pixi-engine
 - http://proclive.io/shooting-tutorial/
 - https://github.com/joegaffey/galaxeroids
+- https://github.com/meth-meth-method/super-mario
+- https://github.com/jakesgordon/javascript-tiny-platformer
+- https://codepen.io/EduardoLopes/pen/IJnAr?editors=0010
 
 ### GLSL Example
 

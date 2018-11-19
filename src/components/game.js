@@ -113,6 +113,8 @@ export default class Game extends PIXI.Application {
     this.filterNoise = new baseFilters.NoiseFilter();
     this.filterNoise.noise = 0.2;
     this.filterCRT = new filters.CRTFilter();
+    this.filterAsciiFilter = new filters.AsciiFilter();
+    this.filterAsciiFilter.size = 14;
     this.filterGlitch = new filters.GlitchFilter({
       fillMode: 3,
       slices: 10,
@@ -124,6 +126,7 @@ export default class Game extends PIXI.Application {
 
     this.gameContainer.filters = [
       this.filterGlitch,
+      this.filterAsciiFilter,
       this.filterCRT,
       this.filterNoise
     ];

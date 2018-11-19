@@ -15,8 +15,7 @@ import playerTexture from './skull.png';
 export default class Player extends PIXI.Sprite {
   constructor(texture) {
     super(texture || PIXI.Texture.fromImage(playerTexture));
-
-    this.anchor.set(0.5);
+    //this.anchor.set(0.5);
     this.interactive = true;
     this.cursor = 'wait';
 
@@ -26,6 +25,10 @@ export default class Player extends PIXI.Sprite {
 
     // Bullets
     this.canShoot = true;
+  }
+
+  get type() {
+    return 'player';
   }
 
   setGamepad(gamepad) {

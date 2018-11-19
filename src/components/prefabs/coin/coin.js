@@ -13,6 +13,10 @@ export default class Coin extends PIXI.Sprite {
     this.bulletSpeed = 5;
   }
 
+  get type() {
+    return 'coin';
+  }
+
   /**
    * animation loop
    * @return {null}

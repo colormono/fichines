@@ -43,17 +43,17 @@ export default class Collisions extends Scene {
     //this.coins.position.set(100, 100);
     this.addChild(this.coins);
     //this.coins.removeChild(coin3);
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10; i++) {
       let monedita = new Coin();
       const w = Math.random() * window.innerWidth;
       const h = Math.random() * window.innerHeight;
       monedita.position.set(w, h);
-      monedita.rotation = w;
+      //monedita.rotation = w;
       this.coins.addChild(monedita);
     }
 
     // Create the player
-    this.player = new Player(PIXI.loader.resources.coin2.texture);
+    this.player = new Player();
     this.player.position.set(500, 200);
     this.player.setGamepad(gamepad);
     this.addChild(this.player);
