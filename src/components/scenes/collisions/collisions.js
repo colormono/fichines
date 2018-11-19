@@ -3,11 +3,18 @@ import * as filters from 'pixi-filters';
 import { Gamepad, Scene } from '../../../engine';
 import { inViewport } from '../../../utils';
 import Intersects from 'intersects';
-import Player from '../../prefabs/player/player';
+import Player from '../../prefabs/player/playerPlatformer';
 import Coin from '../../prefabs/coin/coin';
 
 // Add Keyboard and Gamepad support
 const gamepad = new Gamepad();
+
+var t2p = function(t) {
+  return t * TILE;
+};
+var p2t = function(p) {
+  return Math.floor(p / TILE);
+};
 
 /**
  * Scene: Collisions
@@ -22,6 +29,7 @@ export default class Collisions extends Scene {
   constructor(app) {
     super();
     this.app = app;
+
     this.setup();
   }
 
@@ -31,6 +39,8 @@ export default class Collisions extends Scene {
    * called when loader has finished
    */
   setup() {
+    this.world.gravity.y = 10;
+
     // Fill the background
     let background = new PIXI.Graphics();
     background.beginFill(0x00ccff);
@@ -55,12 +65,13 @@ export default class Collisions extends Scene {
     // Create the player
     this.player = new Player();
     this.player.position.set(500, 200);
+    this.player.collideWorldBounds = true;
     this.player.setGamepad(gamepad);
     this.addChild(this.player);
 
     // Apply pixelated filter
     this.filterPixelate = new filters.PixelateFilter();
-    this.player.filters = [this.filterPixelate];
+    //this.player.filters = [this.filterPixelate];
 
     // Add bullets support
     this.bullets = [];
@@ -91,11 +102,19 @@ export default class Collisions extends Scene {
    */
   update(dt) {
     // Player
-    this.player.update();
+    var tX = this.player.position.x + this.player.vel.x;
+    var tY = this.player.position.y + this.player.vel.y;
+
+    this.player.vel.x += 5;
+    this.player.vel.y += this.world.gravity.y;
+
+    //this.player.update();
+    /*
     this.player.lookAt(
       this.app.renderer.plugins.interaction.mouse.global.x,
       this.app.renderer.plugins.interaction.mouse.global.y
     );
+    */
 
     // Enemy
     this.enemy.rotation += 0.01;

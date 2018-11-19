@@ -77,6 +77,11 @@
 - https://github.com/meth-meth-method/super-mario
 - https://github.com/jakesgordon/javascript-tiny-platformer
 - https://codepen.io/EduardoLopes/pen/IJnAr?editors=0010
+- https://github.com/dissimulate/Clarity
+
+### Game reads
+
+- http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/
 
 ### GLSL Example
 
