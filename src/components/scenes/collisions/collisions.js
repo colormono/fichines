@@ -39,8 +39,6 @@ export default class Collisions extends Scene {
    * called when loader has finished
    */
   setup() {
-    this.world.gravity.y = 10;
-
     // Fill the background
     let background = new PIXI.Graphics();
     background.beginFill(0x00ccff);
@@ -106,7 +104,6 @@ export default class Collisions extends Scene {
     var tY = this.player.position.y + this.player.vel.y;
 
     this.player.vel.x += 5;
-    this.player.vel.y += this.world.gravity.y;
 
     //this.player.update();
     /*
